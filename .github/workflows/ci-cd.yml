@@ -26,12 +26,11 @@ jobs:
 
   build-push-deploy:
     needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Authenticate to AWS (OIDC)
+         - name: Authenticate to AWS (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::777158003660:role/github-actions-ecr
+          aws-region: ${{ env.AWS_REGION }}
         with:
              role-to-assume: arn:aws:iam::777158003660:role/github-actions-ecr
           aws-region: ${{ env.AWS_REGION }}
